@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CEE-ELO UTFSM</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
+        <link rel='icon' href='./img/favicon.ico' type='image/x-icon'/>
+    </head>
+    <body class="gradient">
+        <div class="w3-row">
+            <div class="w3-col l3 m1 s1 w3-container">
+            </div>
+            <div class="form w3-col l6 m10 s10">
+                <form action="./request_access.php" method="post">
+                    <h1>Elecciones CEE-ELO 2020</h1>
+                    <h2>Papeleta Virtual</h2>
+                    <div class="alarm">
+                        <i class="fas fa-info-circle">
+                            <h3>Completa los campos a continuación y pulsa el botón para generar tu voto virtual.</h3>
+                            <h4>Este corresponderá a un archivo .bvf que luego deberás subir a la urna virtual. Puedes informarte más acerca de cómo generamos este archivo y garantizamos tu anonimidad en cee-elo.cl/faq.html.</h4>
+                        </i>
+                    </div>
+                    <h2>¿Acepta a la lista "Ampliando Electrónica" como Mesa Ejecutiva del CEE-ELO para el periodo 2020?</h2>
+                    <div class="select">
+                        <div class="w3-row">
+                            <div class="w3-col l6 m6 s12">
+                                <input type="checkbox" id="checkboxApruebo" name="apruebo" value="apruebo">
+                                <label for="apruebo">Apruebo</label>
+                            </div>
+                            <div class="w3-col l6 m6 s12">
+                                <input type="checkbox" id="checkboxRechazo" name="rechazo" value="rechazo">
+                                <label for="rechazo">Rechazo</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="w3-row">
+                            <div class="w3-col l6 m6 s12">
+                                Notas al margen:
+                            </div>
+                            <div class="w3-col l6 m6 s12">
+                                <input type=text id="free">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="w3-row">
+                            <div class="w3-col l6 m6 s12">
+                                Nombre de archivo (opcional):
+                            </div>
+                            <div class="w3-col l6 m6 s12">
+                                <input type="text" id=bvfLocalFile>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="w3-row">
+                        <div class="w3-col l6 m6 s12">
+                            <button class="btn" id="downloadBtn">Generar voto y descargar</button>
+                        </div>
+                        <div class="w3-col l6 m6 s12">
+                            <button class="btn"><a href="./">Volver al Inicio</a></button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="w3-row">
+                        <div class="w3-col l6 m6 s12">
+                            <div class="alarm">
+                                <i class="fas fa-mask">
+                                    <h3>No ingreses información que pudiera ayudar a identificarte como nota al margen.</h3>
+                                    <h4>Si lo haces, tu voto será considerado como nulo. Es importante garantizar la anonimidad del voto.</h4>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="w3-col l6 m6 s12">
+                            <div class="alarm">
+                                <i class="fas fa-key">
+                                    <h3>El archivo que generas es seguro.</h3>
+                                    <h4>Hemos encriptado tu voto de forma que sólo TRICEL y tú puedan leer sus contenidos. El proceso de encriptación ocurre en tu navegador, por lo que no pasa por nuestros servidores hasta ser seguro.</h4>
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <image src= "./img/cee_elo_logo.png">
+                </form>
+            </div>
+            <div class="w3-col l3 m1 s1 w3-container">
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="./lib/js/cryptojs-aes.min.js"></script>
+    <script type="text/javascript" src="./lib/js/cryptojs-mode-ctr.min.js"></script>
+    <script type="text/javascript" src="./lib/js/eax.min.js"></script>
+    <script type="text/javascript" src="./lib/js/RSA_stripped.js"></script>
+    <script type="text/javascript" src="./lib/js/BigInt.js"></script>
+    <script type="text/javascript" src="./lib/js/Barrett.js"></script>
+    <script type="text/javascript" src="./lib/js/voto.js"></script>
+    <script type="text/javascript" src="./lib/js/rsa_util.js"></script>
+    <script type="text/javascript" src="./lib/js/votoapp.js"></script>
+    <script type="text/javascript" src="./lib/js/blob_download.js"></script>
+    <script>
+    var votoapp = new VotoApp();
+    document.getElementById("downloadBtn").setAttribute('onclick', 'main()');
+    function main(){
+        votoapp.generateVote();
+    }
+    </script>
+</html>
