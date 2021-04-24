@@ -37,7 +37,7 @@
             </div>
             <div class="form w3-col l6 m10 s10">
                 <form enctype="multipart/form-data" action="./request_vote.php" method="post">
-                    <h1>Elecciones CEE-ELO 2020</h1>
+                    <h1>Elecciones CEE-ELO 2021</h1>
                     <h2>Urna Virtual</h2>
                     <div class="w3-row">
                         <?php if($email != "") get_email_sent_msg($email); ?>
