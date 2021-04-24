@@ -8,7 +8,7 @@
         $servername = "localhost";
         $username = $ini_vars['VotingAPP.cfg.DB_USER'];
         $password = $ini_vars['VotingAPP.cfg.DB_PASS'];
-        $db = "ceeelocl_tricel2020";
+        $db = "ceeelocl_tricel2021";
         $conn = new mysqli($servername, $username, $password, $db);
         return $conn;
     }
@@ -43,12 +43,12 @@
         $msg = $msg."del proceso, no lo compartas con nadie.\n\n";
         $msg = $msg."Si no fuiste redireccionado/a, por favor ingresa tu mismo/a al ";
         $msg = $msg."siguiente enlace para continuar con el proceso:\n\n";
-        $msg = $msg."www.cee-elo.cl/urna.php\n\n";
+        $msg = $msg."www.cee-elo.cl/votaciones/urna.php\n\n";
         $msg = $msg."Si tu código ya caducó, por favor repite el proceso y te ";
         $msg = $msg."enviaremos un nuevo código. Si necesitas ayuda, no dudes ";
         $msg = $msg."en contactarnos al correo tricel@cee-elo.cl .\n\n";
         $msg = $msg."Muchas gracias por participar! Por favor cuidate y no ";
-        $msg = $msg."salgas si no es necesario.\n\n Atte.\n\n TRICEL CEE-ELO 2021.";
+        $msg = $msg."salgas si no es necesario.\n\n Atte.\n\n TRICEL CEE-ELO 2020.";
         return $msg;
     }
     /*

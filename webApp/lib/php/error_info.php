@@ -85,12 +85,12 @@
             case "ALREADY_VOTED":
                 echo "<h3>Nuestros registros indican que ya votaste.</h3>";
                 echo "</i>";
-                echo "<h4>Claramente no puedes votar más de una vez. Si aún no has votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
+                echo "<h4>Claramente no puedes votar más de una vez. Si aún no haz votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
                 break;
             case "EMAIL_USED":
                 echo "<h3>Nuestros registros indican que ya votaste.</h3>";
                 echo "</i>";
-                echo "<h4>Tu correo ya fue empleado para votar. Si aún no has votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
+                echo "<h4>Tu correo ya fue empleado para votar. Si aún no haz votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
                 break;
             case "UNKNOWN_STATE":
                 echo "<h3>Tuvimos un problema en el sistema. Tu usuario se encuentra en un estado desconocido.</h3>";

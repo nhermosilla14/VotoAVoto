@@ -9,7 +9,7 @@
     include './lib/php/input_handling.php';
     include './lib/php/fail_handling.php';
     include './lib/php/comm_handling.php';
-
+    $target_dir = "../private_files/";
     /*
         --------------------------------------------------------------------
                                 FORM VERIFICATION
@@ -129,6 +129,13 @@
             if(!$conn->query($voting_query)) {
                 fail_helper_vote("DB_QUERY".$conn->error,$rol,$access_code);
             }
+            // Also store the vote file locally on a private folder using md5 hash as name.
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $hash = hash_file("sha256",$_FILES['vote']['tmp_name']);
+            $target_file = $target_dir.$hash.'.bvf';
+            if (!move_uploaded_file($_FILES['vote']['tmp_name'], $target_file)) {
+                fail_helper_vote("UPLOAD_ERROR",$rol,$access_code);
+            }
         } else {
             fail_helper_vote("CODE_MISMATCH",$rol,$access_code);
         }
@@ -150,6 +157,6 @@
     $conn -> close();
 
     // Redirect the user to last page.
-    header("Location: ./gracias.html");
+    header("Location: https://www.cee-elo.cl/gracias.html");
     exit();
 ?>
