@@ -83,7 +83,7 @@
         fail_helper_access("DB_CONN",$rol,$usr,$dom);
     }
     // Check that ROL exists within db. Get its associated data.
-    $find_query = "SELECT * FROM nomina WHERE rol = '$rol'";
+    $find_query = "SELECT * FROM nomina WHERE email = '$email'";
     $result = $conn->query($find_query);
     if(!$result) {
         fail_helper_access("DB_QUERY",$rol,$usr,$dom);
@@ -105,10 +105,10 @@
         }
 
         // Further check that email hasn't been used to vote before.
-        $find_query = "SELECT * FROM nomina WHERE (email='$email' AND estado=3)";
+        $find_query = "SELECT * FROM nomina WHERE (rol='$rol' AND estado=3)";
         $result = $conn->query($find_query);
         if ($result->num_rows != 0) { // Fail if we found one.
-            fail_helper_access("EMAIL_USED",$rol,$usr,$dom);
+            fail_helper_access("ROL_USED",$rol,$usr,$dom);
         }
 
         // Generate access code.
@@ -116,7 +116,7 @@
         $access_code = $access_code[0];
 
         // Update db.
-        $update_query = "UPDATE nomina SET codigo='$access_code', email='$email', stamp=now(), estado=2 WHERE rol = '$rol'";
+        $update_query = "UPDATE nomina SET codigo='$access_code', rol='$rol', stamp=now(), estado=2 WHERE email = '$email'";
         if (!$conn->query($update_query)) {
             fail_helper_access("DB_QUERY",$rol,$usr,$dom);
         }
@@ -125,7 +125,7 @@
         $msg = access_code_email_content($access_code, $usr);
         if(!mail($email,"[TRICEL] Tu codigo de acceso",$msg,"From: tricel@cee-elo.cl\r\n")){
             // Make sure to go back to state 1.
-            $update_query = "UPDATE nomina SET estado=1 WHERE rol = '$rol'";
+            $update_query = "UPDATE nomina SET estado=1 WHERE email = '$email'";
             if (!$conn->query($update_query)) {
                 fail_helper_access("DB_QUERY",$rol,$usr,$dom);
             }
@@ -133,7 +133,7 @@
         }
     } else {
         // Fail otherwise.
-        fail_helper_access("ROL_SEARCH",$rol,$usr,$dom);
+        fail_helper_access("MAIL_SEARCH",$rol,$usr,$dom);
     }
 
     /*
