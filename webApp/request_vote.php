@@ -124,24 +124,37 @@
         }
         // Verify that the right access code was provided.
         if($result["codigo"] == $access_code){
-            // If valid, insert vote.
-            $voting_query = "INSERT INTO urna(voto) VALUES ('{$vote_data}')";
-            if(!$conn->query($voting_query)) {
-                fail_helper_vote("DB_QUERY".$conn->error,$rol,$access_code);
-            }
-            // Also store the vote file locally on a private folder using md5 hash as name.
+            // If valid, prepare to register the provided vote file.
+            // 1) Move vote to private_files directory.
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $hash = hash_file("sha256",$_FILES['vote']['tmp_name']);
             $target_file = $target_dir.$hash.'.bvf';
             if (!move_uploaded_file($_FILES['vote']['tmp_name'], $target_file)) {
                 fail_helper_vote("UPLOAD_ERROR",$rol,$access_code);
             }
+
+            // 2) Start a transaction. Update user state and insert vote data.
+            try{
+                $update_query = "UPDATE nomina SET stamp=now(), estado=3 WHERE rol = '$rol'";
+                $voting_query = "INSERT INTO urna(voto) VALUES ('{$vote_data}')";
+                $conn->beginTransaction();
+                $conn->query($update_query);
+                $conn->query($voting_query);
+                $conn->commit();
+            } catch (\Throwable $e) {
+                $conn->rollback();
+                if(!unlink($target_file)){
+                    /*
+                    TODO:
+                        Si no podemos eliminar el archivo de voto de la carpeta private_files
+                        debemos alertar a tricel urgente.
+                    */
+                    fail_helper_vote("UPLOAD_ERROR",$rol,$access_code);
+                }
+                fail_helper_vote("DB_QUERY".$conn->error,$rol,$access_code);
+            }
         } else {
             fail_helper_vote("CODE_MISMATCH",$rol,$access_code);
-        }
-        $update_query = "UPDATE nomina SET stamp=now(), estado=3 WHERE rol = '$rol'";
-        if (!$conn->query($update_query)) {
-            fail_helper_vote("DB_QUERY",$rol,$access_code);
         }
     } else { // Fail otherwise.
         fail_helper_vote("ROL_SEARCH",$rol,$access_code);
