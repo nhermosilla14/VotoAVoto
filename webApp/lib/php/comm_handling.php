@@ -34,7 +34,7 @@
         $name = explode(".", $user);
         $msg = "Hola ".ucfirst($name[0])."!\n";
         $msg = $msg."Hemos recibido tu solicitud para participar de la elección ";
-        $msg = $msg."de Mesa Ejecutiva CEE-ELO 2020. Para emitir tu voto, debes ";
+        $msg = $msg."de Mesa Ejecutiva CEE-ELO 2021. Para emitir tu voto, debes ";
         $msg = $msg."ingresar el siguiente código en el formulario al que fuiste ";
         $msg = $msg."redireccionado/a:\n\n";
         $msg = $msg.$access_code."\n\n";
