@@ -5,11 +5,11 @@
         <title>CEE-ELO UTFSM</title>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
-        <link rel='icon' href='./img/favicon.ico' type='image/x-icon'/>
+        <link rel='icon' href='img/favicon.ico' type='image/x-icon'/>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
     <body class="gradient">
@@ -17,18 +17,46 @@
             <div class="w3-col l3 m1 s1 w3-container">
             </div>
             <div class="form w3-col l6 m10 s10">
-                <h1>Elecciones CEE-ELO 2020</h1>
+                <h1>Elecciones CEE-ELO 2021</h1>
                 <h2>¿Cómo funciona?</h2>
                 <br>
+                <!-- -->
                 <div class="alarm">
-                    <i class="fas fa-exclamation-circle">
-                        <h3>Página en construcción. Lamentamos las molestias!</h3>
+                    <i class="fas fa-question-circle">
+                        <h3>¿Cómo voto?</h3>
                     </i>
+                    <h4>Muy simple! Genera tu archivo de voto, lo descargas y luego te vas al paso 2. Subes tu archivo, el código que enviamos a tu mail y listo! Puedes guardar tu archivo de voto si quieres, pero no es necesario que lo hagas (sólo sirve si luego quieres corroborar su contenido).</h4>
                     <br>
                 </div>
-                <br>                
-                <image src= "./img/piolin_2.gif">
-                <br>
+                <div class="alarm">
+                    <i class="fas fa-question-circle">
+                        <h3>Dice que "mi voto es secreto". ¿Realmente es así?</h3>
+                    </i>
+                    <h4>Así es, top secret. Encriptamos tu voto usando dos cifrados diferentes, y la clave para descifrar todo sólo la tenemos nosotros. Al final del proceso la usamos para el conteo, luego de lo cual queda libre para que todos puedan usarla.</h4>
+                    <br>
+                </div>
+                <div class="alarm">
+                    <i class="fas fa-question-circle">
+                        <h3>¿Quién puede revisar los resultados?</h3>
+                    </i>
+                    <h4>Sólo el TRICEL, al igual que en una votación regular. La urna virtual es pública, pero los votos son ilegibles sin la clave. De todas formas puedes bajar todos los votos cuando quieras, para corroborar, auditar o recontar los votos luego por tu cuenta <a href="https://cee-elo.cl/votos_emitidos">aquí</a>. Por seguridad, estos sólo se actualizan cada 15 minutos, de forma que no sea posible rastrear un voto por su hora de emisión. </h4>
+                    <br>
+                </div>
+                <div class="alarm">
+                    <i class="fas fa-question-circle">
+                        <h3>¿Qué garantías existen de la transparencia de este proceso?</h3>
+                    </i>
+                    <h4>Dado que la urna es pública, cualquiera puede sumarse a la tarea de auditar. Las "firmas virtuales" se almacenan de forma completamente separada a los votos, por lo cual no hay manera de relacionar ambas, pero si se puede contar el número de votantes. Además, el código enviado a tu correo es aleatorio y se puede auditar todo el registro de actividad del servidor, una vez concluido el proceso. </h4>
+                    <br>
+                </div>
+                <div class="alarm">
+                    <i class="fas fa-question-circle">
+                        <h3>¿De dónde salió esta plataforma?</h3>
+                    </i>
+                    <h4>La idea de hacer una plataforma de votación fue originalmente de Paula Amigo, ex presidenta de nuestro CEE-ELO 2019. Ella hizo un bosquejo de la idea, y luego la elaboramos en el TRICEL y añadimos el cifrado asimétrico y todas las medidas de seguridad, el código para generar votos y subirlo, etc. Esto último entre Javier Torres (bases de datos y casi toda la pega del servidor, incluida la magia para la urna virtual), Nicolás Hermosilla (diseño del formato bvf, encriptación, py y js del generador del voto) y Valentina Barreda (sin cuya contribución esta web completa haría que tus ojos sangraran en asqueroso blanco y negro). El trabajo de actualizar la plataforma a su versión 2021 fue llevado a cabo por el TRICEL de este año, integrado por Pedro Espinoza, Nicolás Hermosilla, Kevin Pizarro y Javier Torres. Los cambios son pocos, pero básicamente comprenden actualizaciones en la base de datos y correcciones al código base. Las elecciones de FEUTFSM de este año usarán una plataforma basada en esta igualmente, y el trabajo en esa versión está siendo llevado mientras lees esto.</h4>
+                    <br>
+                </div>
+                <!-- -->
                 <image src= "./img/cee_elo_logo.png">
                 <br>
             </div>
@@ -37,3 +65,4 @@
         </div>
     </body>
 </html>
+
