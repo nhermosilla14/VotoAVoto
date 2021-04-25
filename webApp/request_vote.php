@@ -144,8 +144,11 @@
             } catch (\Throwable $e) {
                 $conn->rollback();
                 if(!unlink($target_file)){
-                    // Si no podemos eliminar el archivo de voto de la carpeta private_files
-                    // debemos alertar a tricel urgente.
+                    /*
+                    TODO:
+                        Si no podemos eliminar el archivo de voto de la carpeta private_files
+                        debemos alertar a tricel urgente.
+                    */
                     fail_helper_vote("UPLOAD_ERROR",$rol,$access_code);
                 }
                 fail_helper_vote("DB_QUERY".$conn->error,$rol,$access_code);
