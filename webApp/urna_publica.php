@@ -16,7 +16,6 @@
             <div class="w3-col l3 m1 s1 w3-container">
             </div>
             <div class="form w3-col l6 m10 s10">
-                <form action="" method="post">
                     <h1>Elecciones CEE-ELO 2021</h1>
                     <h2>Urna Virtual Pública</h2>
                     <div class="alarm">
@@ -25,6 +24,7 @@
                             <h4>Los votos son renombrados a su suma de chequeo SHA256, y recomendamos usarla si quieres verificar que tu voto está subido. Más información sobre esto y sobre cómo garantizamos tu anonimidad en cee-elo.cl/faq.html.</h4>
                         </i>
                     </div>
+                    <div>
                     <?php
                         $fileList = glob('./urna_publica/*.bvf');
                         $domain = $_SERVER['SERVER_NAME']."/";
@@ -32,27 +32,29 @@
                         foreach($fileList as $filename){
                             //Use the is_file function to make sure that it is not a directory.
                             if(is_file($filename)){
-                                echo "<a href=$protocol$domain$filename> $filename </a>", '<br>'; 
+                                echo "<p><a href=$protocol$domain$filename>", basename($filename), "</a> </p>"; 
                             }   
                         }
-
+                    ?>
+                    </div>
                     <div class="w3-row">
                         <div class="w3-col l6 m6 s12">
                             <button class="btn" id="downloadBtn">Descargar todo en zip</button>
-                        </div>
-                    </div>
-                    <div class="w3-row"> 
+                        </div>    
                         <div class="w3-col l6 m6 s12">
                             <button class="btn"><a href="./">Volver al Inicio</a></button>
                         </div>
                     </div>
+                    <div class="w3-row"> 
+                        
+                    </div>
                     <br>
-                    <image src= "./img/cee_elo_logo.png">
-                </form>
+                    <image src= "./img/cee_elo_logo.png"> 
             </div>
             <div class="w3-col l3 m1 s1 w3-container">
             </div>
         </div>
+
+
     </body>
-    <script>
 </html>
