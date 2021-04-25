@@ -1,10 +1,19 @@
 <?php
     /*
+        Sanitize relative paths for curl funtion.
+    */
+    function sanitize_curl_path($relative) {
+        $domain = $_SERVER['HTTP_HOST'];
+        $prefix = $_SERVER['HTTPS'] ? 'https://' : 'http://';
+        $result = $prefix.$domain.$relative;
+    }
+    
+    /*
         Send back form content and reason in case of error.
     */
     function fail_helper_access($error_reason,$rol,$user,$domain){
         // Set target url
-        $url = './identificacion.php';
+        $url = sanitize_curl_path('./identificacion.php');
         // Set the post values
         $fields = array(
             'error_reason' => urlencode($error_reason),
@@ -39,7 +48,7 @@
     */
     function fail_helper_vote($error_reason,$rol,$access_code){
         // Set target url
-        $url = './urna.php';
+        $url = sanitize_curl_path('./urna.php');
         // Set the post values
         $fields = array(
             'error_reason' => urlencode($error_reason),
@@ -73,7 +82,7 @@
     */
     function goto_upload($email,$rol){
         // Set target url
-        $url = './urna.php';
+        $url = sanitize_curl_path('./urna.php');
         // Set the post values
         $fields = array(
             'email' => urlencode($email),
