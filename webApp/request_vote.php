@@ -9,7 +9,7 @@
     include './lib/php/input_handling.php';
     include './lib/php/fail_handling.php';
     include './lib/php/comm_handling.php';
-    $target_dir = "../private_files/";
+    $target_dir = "../../private_files/";
     /*
         --------------------------------------------------------------------
                                 FORM VERIFICATION
