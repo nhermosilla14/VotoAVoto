@@ -30,7 +30,7 @@
             </div>
             <div class="form w3-col l6 m10 s10">
                 <form action="./request_access.php" method="post">
-                    <h1>Elecciones CEE-ELO 2020</h1>
+                    <h1>Elecciones CEE-ELO 2021</h1>
                     <h2>Identificación</h2>
                     <div class="alarm">
                         <i class="fas fa-info-circle">
