@@ -82,15 +82,26 @@
                 echo "<h4>Por favor, verifica que el ROL ingresado es correcto. Si todo está en orden, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
                 echo "<h4>Adjunta en el correo tu nombre completo, ROL y certificado de alumno de regular (lo puedes conseguir gratis en SIGA).</h4>";
                 break;
+            case "MAIL_SEARCH":
+                echo "<h3>Tuvimos un problema para encontrarte en el listado de votantes.</h3>";
+                echo "</i>";
+                echo "<h4>Por favor, verifica que el E-mail ingresado es correcto. Si todo está en orden, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
+                echo "<h4>Adjunta en el correo tu nombre completo, rol, e-mail y certificado de alumno de regular (lo puedes conseguir gratis en SIGA).</h4>";
+                break;
             case "ALREADY_VOTED":
                 echo "<h3>Nuestros registros indican que ya votaste.</h3>";
                 echo "</i>";
                 echo "<h4>Claramente no puedes votar más de una vez. Si aún no haz votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
                 break;
-            case "EMAIL_USED":
+            case "MAIL_USED":
                 echo "<h3>Nuestros registros indican que ya votaste.</h3>";
                 echo "</i>";
                 echo "<h4>Tu correo ya fue empleado para votar. Si aún no haz votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
+                break;
+            case "ROL_USED":
+                echo "<h3>Nuestros registros indican que ya votaste.</h3>";
+                echo "</i>";
+                echo "<h4>Tu rol USM ya fue empleado para votar. Si aún no haz votado, verifica que los datos ingresados son correctos. Si todo está en orden y el problema persiste, por favor contáctanos a tricel@cee-elo.cl indicando tu situación.</h4>";
                 break;
             case "UNKNOWN_STATE":
                 echo "<h3>Tuvimos un problema en el sistema. Tu usuario se encuentra en un estado desconocido.</h3>";

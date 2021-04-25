@@ -4,7 +4,7 @@
     */
     function db_conn(){
         // Parse php.ini file.
-        $ini_vars = parse_ini_file('../php.ini');
+        $ini_vars = parse_ini_file('../../php.ini');
         $servername = "localhost";
         $username = $ini_vars['VotingAPP.cfg.DB_USER'];
         $password = $ini_vars['VotingAPP.cfg.DB_PASS'];
@@ -17,7 +17,7 @@
         Verify Google Re-Captcha response.
     */
     function check_captcha($captcha){
-        $ini_vars = parse_ini_file('../php.ini');
+        $ini_vars = parse_ini_file('../../php.ini');
         $secretKey = $ini_vars['VotingAPP.cfg.CAPTCHA_SECRET'];
         $ip = $_SERVER['REMOTE_ADDR'];
         // Post request to re-captcha server
