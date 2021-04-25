@@ -65,7 +65,7 @@
     }
     $usr = sanitize_input($usr);
     $dom = sanitize_input($dom);
-    $email = $usr.$dom;
+    $email = strtoupper($usr.$dom);
     if (!email_format($email)) {
         fail_helper_access("MAIL_FORMAT",$rol,$usr,$dom);
     }
