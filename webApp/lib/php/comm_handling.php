@@ -48,7 +48,7 @@
         $msg = $msg."enviaremos un nuevo código. Si necesitas ayuda, no dudes ";
         $msg = $msg."en contactarnos al correo tricel@cee-elo.cl .\n\n";
         $msg = $msg."Muchas gracias por participar! Por favor cuidate y no ";
-        $msg = $msg."salgas si no es necesario.\n\n Atte.\n\n TRICEL CEE-ELO 2020.";
+        $msg = $msg."salgas si no es necesario.\n\n Atte.\n\n TRICEL CEE-ELO 2021.";
         return $msg;
     }
     /*
