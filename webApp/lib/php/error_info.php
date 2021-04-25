@@ -62,12 +62,12 @@
                 echo "<h4>Si el problema persiste, por favor contáctanos a tricel@cee-elo.cl.</h4>";
                 break;
             case "DB_CONN":
-                echo "<h3>Tuvimos un problema para conectarnos a la base de datos.</h3>";
+                echo "<h3>Tuvimos un problema para conectarnos a la base de datos. Error 0x65.</h3>";
                 echo "</i>";
                 echo "<h4>Por favor, intenta más tarde. Si el problema persiste, por favor contáctanos a tricel@cee-elo.cl.</h4>";
                 break;
             case "DB_QUERY":
-                echo "<h3>Tuvimos un problema para conectarnos a la base de datos.</h3>";
+                echo "<h3>Tuvimos un problema para conectarnos a la base de datos. Error 0xAE.</h3>";
                 echo "</i>";
                 echo "<h4>Por favor, intenta más tarde. Si el problema persiste, por favor contáctanos a tricel@cee-elo.cl.</h4>";
                 break;
