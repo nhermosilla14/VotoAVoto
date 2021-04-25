@@ -5,7 +5,7 @@
     function sanitize_curl_path($relative) {
         $domain = $_SERVER['SERVER_NAME'];
         $prefix = $_SERVER['HTTPS'] ? 'https://' : 'http://';
-        $result = $prefix.$domain.$relative;
+        return $prefix.$domain.$relative;
     }
 
     /*
