@@ -157,6 +157,6 @@
     $conn -> close();
 
     // Redirect the user to last page.
-    header("Location: https://www.cee-elo.cl/gracias.html");
+    header("Location: https://www.cee-elo.cl/votaciones/gracias.html");
     exit();
 ?>
