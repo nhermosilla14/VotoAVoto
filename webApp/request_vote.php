@@ -15,7 +15,6 @@
                                 FORM VERIFICATION
         --------------------------------------------------------------------
     */
-
     // Get vars from POST. Check if they have been set. Fail otherwise.
     $rol = $access_code = $captcha = $vote_data = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
