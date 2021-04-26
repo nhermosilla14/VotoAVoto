@@ -21,7 +21,9 @@
                     <div class="alarm">
                         <i class="fas fa-info-circle">
                             <h3>Acá puedes consultar todos los votos que han sido emitidos, con un delay de 15 minutos (por anonimidad).</h3>
-                            <h4>Los votos son renombrados a su suma de chequeo SHA256, y recomendamos usarla si quieres verificar que tu voto está subido. Más información sobre esto y sobre cómo garantizamos tu anonimidad en cee-elo.cl/faq.html.</h4>
+                            <h4>Los votos son renombrados a su suma de chequeo SHA256, y recomendamos usarla si quieres verificar que tu voto está subido.<br> Más información sobre esto y sobre cómo garantizamos tu anonimidad en 
+                                <a href="./faq.html">aquí</a>
+                            </h4>
                         </i>
                     </div>
                     <div>
