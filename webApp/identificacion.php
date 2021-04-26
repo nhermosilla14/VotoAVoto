@@ -82,6 +82,8 @@
                         <?php if($reason != "") get_error_info($reason); ?>
                     </div>
                     <br>
+                    <button class="btn"><a href="./">Volver al Inicio</a></button>
+                    <br>
                     <image src= "./img/cee_elo_logo.png">
                 </form>
             </div>
