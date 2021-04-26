@@ -102,10 +102,12 @@ a{
     text-decoration: none;
 }
 
-
-
-
 page-container {
     position: relative;
     min-height: 100vh;
+}
+
+#wrapper {
+    overflow:auto;
+    height:200px;
 }

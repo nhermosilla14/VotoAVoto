@@ -26,7 +26,7 @@
                             </h4>
                         </i>
                     </div>
-                    <div>
+                    <div id="wrapper">
                     <?php
                         $fileList = glob('./urna_publica/*.bvf');
                         $domain = $_SERVER['SERVER_NAME']."/";
