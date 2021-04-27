@@ -21,9 +21,7 @@
                     <div class="alarm">
                         <i class="fas fa-info-circle">
                             <h3>Acá puedes consultar todos los votos que han sido emitidos, con un delay de 15 minutos (por anonimidad).</h3>
-                            <h4>Los votos son renombrados a su suma de chequeo SHA256, y recomendamos usarla si quieres verificar que tu voto está subido.<br> Más información sobre esto y sobre cómo garantizamos tu anonimidad en 
-                                <a href="./faq.html"><em><strong>aquí </strong> </em></a>
-                            </h4>
+                            <h4>Los votos son renombrados a su suma de chequeo SHA256, y recomendamos usarla si quieres verificar que tu voto está subido. Más información sobre esto y sobre cómo garantizamos tu anonimidad en cee-elo.cl/faq.html.</h4>
                         </i>
                     </div>
                     <div id="wrapper">
@@ -39,12 +37,35 @@
                         }
                     ?>
                     </div>
+
+<div class="w3-row">
+                        <div class="w3-col l6 m6 s12">
+                            <div class="alarm">
+                                <i class="fas fa-search">
+                                    <h3>¿Qué puedo hacer con estos datos?.</h3>
+                                    <h4>Puedes usar la copia que tienes en tu equipo de tu propio voto y obtener su suma de chequeo SHA256. Hay muchas formas, por ejemplo <a href="https://hash.online-convert.com/sha256-generator">esta<a>.</h4>
+                                </i>
+                            </div>
+                        </div>
+                        <div class="w3-col l6 m6 s12">
+                            <div class="alarm">
+                                <i class="fas fa-rocket">
+                                    <h3>¿Cómo bajo todos los archivos?</h3>
+                                    <h4>Con cualquier gestor de descargas: JDownloader, Download Master, o nuestro favorito: wget. Para este último, ejecuta: wget -np -nH -r https://cee-elo.cl/votaciones/urna_publica/ </h4>
+                                </i>
+                            </div>
+                        </div>
+        </div>
+
+
+
+
                     <div class="w3-row">
                         <div class="w3-col l6 m6 s12">
-                            <button class="btn" id="downloadBtn">Descargar todo en zip</button>
-                        </div>    
-                        <div class="w3-col l6 m6 s12">
                             <button class="btn"><a href="./">Volver al Inicio</a></button>
+                        </div>
+                        <div class="w3-col l6 m6 s12">
+                            <button class="btn"><a href="./faq.html">Preguntas frecuentes</a></button>
                         </div>
                     </div>
                     <div class="w3-row"> 
@@ -56,6 +77,7 @@
             <div class="w3-col l3 m1 s1 w3-container">
             </div>
         </div>
+        
 
 
     </body>
