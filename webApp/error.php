@@ -29,7 +29,7 @@
                   <?php if($reason != "") get_error_info($reason); ?>
                 </div>
                 <br>
-                <button class="btn"><a href="./">Volver al Inicio</a></button>
+                <button class="btn" onclick="window.location.href='index.html';">Volver al Inicio</button>
                 <br>
                 <image src= "./img/cee_elo_logo.png">
             </div>

@@ -62,10 +62,10 @@
 
                     <div class="w3-row">
                         <div class="w3-col l6 m6 s12">
-                            <button class="btn"><a href="./">Volver al Inicio</a></button>
+                            <button class="btn" onclick="window.location.href='index.html';">Volver al Inicio</button>
                         </div>
                         <div class="w3-col l6 m6 s12">
-                            <button class="btn"><a href="./faq.html">Preguntas frecuentes</a></button>
+                            <button class="btn" onclick="window.location.href='faq.html';">Preguntas frecuentes</button>
                         </div>
                     </div>
                     <div class="w3-row">

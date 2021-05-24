@@ -62,7 +62,7 @@
                     </div>
                     <input type="submit" value= "Ingresar Voto">
                     <br>
-                    <button class="btn"><a href="./">Volver al Inicio</a></button>
+                    <button class="btn" onclick="window.location.href='index.html';">Volver al Inicio</button>
                     <br>
                     <image src= "./img/cee_elo_logo.png">
                 </form>
