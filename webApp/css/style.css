@@ -55,13 +55,6 @@ body {
   padding: 5% 12%;
 }
 
-#captcha{
-    transform:scale(0.77);
-    -webkit-transform:scale(0.77);
-    transform-origin:0 0;
-    -webkit-transform-origin:0 0;
-}
-
 .alarm{
        border-radius: 5px;
        margin:  5% 1%;

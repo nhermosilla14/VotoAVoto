@@ -9,25 +9,4 @@ function sanitize_input($data){
     $data = htmlspecialchars($data);
     return $data;
 }
-
-/*
-    Just a convenience wrapper for the ROL format checker. Eases re-utilization.
-*/
-function rol_format($rol){
-    return preg_match('/^[0-9]{7,9}\-[0-9K]$/',$rol);
-}
-
-/*
-    Just a convenience wrapper for the ROL format checker. Eases re-utilization.
-*/
-function access_code_format($access_code){
-    return preg_match('/^[0-9a-zA-Z]{8}$/',$access_code);
-}
-
-/*
-    Just a convenience wrapper for the email format checker. Eases re-utilization.
-*/
-function email_format($email){
-    return filter_var($email, FILTER_VALIDATE_EMAIL);
-}
 ?>
