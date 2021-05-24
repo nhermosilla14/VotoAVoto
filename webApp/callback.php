@@ -60,7 +60,7 @@
       // user can vote, set cookie and redirect to next step
       $max_age = 300;
       echo "<script type='text/javascript'>
-              document.cookie = 'voting_signature={$id_token}; max-age={$max_age}; Secure; HttpOnly;';
+              document.cookie = 'voting_signature={$id_token}; max-age={$max_age}; Secure';
             </script>";
       redirect_to_page("urna.php");
     }

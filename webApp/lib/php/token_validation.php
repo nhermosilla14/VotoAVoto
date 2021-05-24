@@ -3,6 +3,7 @@
       Validate a JWT using a python module
     */
     function validate_jwt($id_token) {
+      $jwt_username = array();
       $jwt_retval = -1;
       if (preg_match("/^[a-zA-Z0-9\.\-_]+$/", $id_token)) {
         exec("python3 lib/python/signature_validation.py " . escapeshellarg($id_token), $jwt_username, $jwt_retval);
