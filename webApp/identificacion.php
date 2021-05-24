@@ -1,94 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>CEE-ELO UTFSM</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="./css/style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
-        <link rel='icon' href='./img/favicon.ico' type='image/x-icon'/>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    </head>
-    <?php
-        $reason = $rol = $usr = $dom = "";
-        include './lib/php/error_info.php';
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if(isset($_POST['rol']) and isset($_POST['user']) and isset($_POST['domain']) and isset($_POST['error_reason'])){
-                $rol = $_POST['rol'];
-                $usr = $_POST['user'];
-                $dom = $_POST['domain'];
-                $reason = $_POST['error_reason'];
-            }
-        }
-    ?>
-    <body class="gradient">
-        <div class="w3-row">
-            <div class="w3-col l3 m1 s1 w3-container">
-            </div>
-            <div class="form w3-col l6 m10 s10">
-                <form action="./request_access.php" method="post">
-                    <h1>Elecciones CEE-ELO 2021</h1>
-                    <h2>Identificación</h2>
-                    <div class="alarm">
-                        <i class="fas fa-info-circle">
-                            <h3>Ingresa tus datos.</h3>
-                            <h4>Te enviaremos un código de acceso por correo. Con él podrás subir tu voto a nuestra urna virtual.</h4>
-                        </i>
-                    </div>
-                    <div class="select">
-                        <div class="w3-row">
-                            <div class="w3-col l3 m3 s12">
-                                Rol:
-                            </div>
-                            <div class="w3-col l5 m5 s12">
-                                <input type="text"  id="rol" name="rol" maxlength="11" size="11" placeholder="202021090-8" value ="<?php echo $rol;?>" required>
-                            </div>
-                            <div class="w3-col l4 m4 s12">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="w3-row">
-                            <div class="w3-col l3 m3 s12">
-                                Email:
-                            </div>
-                            <div class="w3-col l5 m5 s12">
-                                <input type="text" id="user" name="user" maxlength="64" size="15" value ="<?php echo $usr;?>" required>
-                            </div>
-                            <div class="w3-col l4 m4 s12">
-                                <select name ="domain">
-                                    <option value="@sansano.usm.cl" <?php if($dom=="@sansano.usm.cl") echo "selected";?>> @sansano.usm.cl </option>
-                                    <option value="@usm.cl" <?php if($dom=="@usm.cl") echo "selected";?>> @usm.cl </option>
-                                    <option value="@alumnos.usm.cl" <?php if($dom=="@alumnos.usm.cl") echo "selected";?>> @alumnos.usm.cl </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="w3-row">
-                        <div class="w3-col l3 m3 s1">
-                        </div>
-                        <div class="w3-col l5 m5 s10 w3-center" style="float:none;display: inline-block;">
-                            <div id="captcha" class="g-recaptcha" data-sitekey="6LeoqO8UAAAAAMb3tPGIdBcxPp91kZgPZR7Yfw3Q">
-                            </div>
-                        </div>
-                        <div class="w3-col l4 m4 s1">
-                        </div>
-                    </div>
-                    <input type="submit" value= "Ingresar">
-                    <div class="w3-row">
-                        <?php if($reason != "") get_error_info($reason); ?>
-                    </div>
-                    <br>
-                    <button class="btn"><a href="./">Volver al Inicio</a></button>
-                    <br>
-                    <image src= "./img/cee_elo_logo.png">
-                </form>
-            </div>
-            <div class="w3-col l3 m1 s1 w3-container">
-            </div>
-        </div>
-    </body>
-</html>
+<?php
+  // import db handling and cookie validation functions
+  include 'lib/php/comm_handling.php';
+  include 'lib/php/token_validation.php';
+  include 'lib/php/fail_handling.php';
+
+  // check that a cookie hasn't been set, if so, redirect to ballot box
+  if (is_session_cookie_set()) {
+    redirect_to_page("urna.php");
+  }
+
+  // get connection object and check proper connection
+  $conn = db_conn();
+  if ($conn->connect_error) {
+    redirect_to_error_page("DB_CONN");
+  }
+
+  // following specs from: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
+  // set client_id, tenant and redirect uri
+  $ini_vars = parse_ini_file('php.ini');
+  $tenant = $ini_vars['VotingAPP.azure.TENANT'];
+  $client_id = $ini_vars['VotingAPP.azure.CLIENT_ID'];
+  $redirect_uri = $ini_vars['VotingAPP.azure.REDIRECT_URI'];
+
+  // create random nonce and client state (prevents CSRF)
+  // (state should be saved temporarilly into the DB for later verifaction)
+  $nonce = random_int(0, 2**32);
+  $state = bin2hex("NOT_LOGGED_IN-{$nonce}");
+  $save_state = "INSERT INTO client_state(state) VALUES ('{$state}')";
+
+  // check errors in state saving
+  if (!$conn->query($save_state)) {
+    $conn -> close();
+    redirect_to_error_page("DB_QUERY");
+  }
+
+  // create login url and redirect user
+  $microsoft_login_url = "https://login.microsoftonline.com/{$tenant}/oauth2/v2.0/authorize"
+                        . "?state={$state}"
+                        . "&nonce={$nonce}"
+                        . "&response_mode=form_post"
+                        . "&scope=openid profile user.read"
+                        . "&response_type=id_token"
+                        . "&approval_prompt=auto"
+                        . "&client_id={$client_id}"
+                        . "&redirect_uri={$redirect_uri}";
+
+  $conn->close();
+  redirect_to_page($microsoft_login_url);
+?>
