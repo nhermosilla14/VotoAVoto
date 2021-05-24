@@ -18,7 +18,7 @@
     // verify state (it's valid hex)
     if (preg_match("/^[a-f0-9]{2,}$/", $state)) {
       // verify state (it's on our db)
-      $search_query = "SELECT state FROM client_states WHERE state = '{$state}'";
+      $search_query = "SELECT state FROM client_state WHERE state = '{$state}'";
       $res = $conn->query($search_query);
 
       if ($res->num_rows == 0) {
@@ -28,7 +28,7 @@
       }
 
       // delete client state from db
-      $delete_query = "DELETE FROM client_states WHERE state = '{$state}'";
+      $delete_query = "DELETE FROM client_state WHERE state = '{$state}'";
       if (!$conn->query($delete_query)) {
         $conn -> close();
         redirect_to_error_page("DB_QUERY");
@@ -46,7 +46,7 @@
     // check if validation was successful
     if ($jwt_retval == 0) {
       // then check against valid users
-      $check_user_query = "SELECT email FROM users WHERE email = '{$jwt_username}'";
+      $check_user_query = "SELECT email FROM student WHERE email = '{$jwt_username}'";
 
       // user wasn't found in db, redirect to error page
       $res = $conn->query($check_user_query);
@@ -58,9 +58,9 @@
       $conn -> close();
 
       // user can vote, set cookie and redirect to next step
-      $max_age = 1800;
+      $max_age = 300;
       echo "<script type='text/javascript'>
-              document.cookie = 'voting_signature={$id_token}; max-age={$max_age};';
+              document.cookie = 'voting_signature={$id_token}; max-age={$max_age}; Secure; HttpOnly;';
             </script>";
       redirect_to_page("urna.php");
     }
