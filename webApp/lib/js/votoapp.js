@@ -12,14 +12,38 @@ class VotoApp {
         this.voto = new Voto();
     }
 
+    getChoice(number){
+        var choice = "";
+        if (document.getElementById("checkbox" + this.leadZeros(number) + "01").checked){
+            choice = "01";
+        }
+        if (document.getElementById("checkbox" + this.leadZeros(number) + "02").checked){
+            if (choice !== ""){
+                choice = "N";
+            } else {
+                choice = "02";
+            }
+        }
+        if (choice === "")
+            choice = "00";
+        return choice;
+    }
+    
+    leadZeros(number){
+        if (number < 10){
+            return "0"+number;
+        }else{
+            return number;
+        }
+    }
+
+
     getMain(){
-        this.voto.main = ' ';
-        if (document.getElementById("checkboxApruebo").checked){
-            this.voto.main += "apruebo";
+        for (var i=1; i <= 5; i++){
+            this.voto.main += this.leadZeros(i)+"."+this.getChoice(i)+",";
         }
-        if (document.getElementById("checkboxRechazo").checked){
-            this.voto.main += "rechazo";
-        }
+        this.voto.main = this.voto.main.substring(0, this.voto.main.length - 1);
+        console.log(this.voto.main);
     }
 
     getFree(){
