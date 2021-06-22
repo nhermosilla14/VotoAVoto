@@ -49,7 +49,13 @@
         if($f_type == "bvf"){
             // has to be smaller than 1 KiB
             if($f_size <= 1024){
-                $vote_data = addslashes(file_get_contents($_FILES['vote']['tmp_name']));
+                $raw_vote_data = file_get_contents($_FILES['vote']['tmp_name']);
+                // needs entropy over a certain threshold to ensure only encrypted files are inputted (compressed files also apply here)
+                if (entropy($raw_vote_data) >= 6.2) {
+                    $vote_data = bin2hex($raw_vote_data);
+                } else {
+                    redirect_to_error_page("FILE_ENT");
+                }
             } else {
                 redirect_to_error_page("FILE_SIZE");
             }

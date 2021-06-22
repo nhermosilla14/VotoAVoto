@@ -22,6 +22,11 @@
                 echo "</i>";
                 echo "<h4>Asegúrate de haber escogido el archivo correcto. Si el problema persiste, por favor contáctanos a {$support_email}.</h4>";
                 break;
+            case "FILE_ENT":
+                echo "<h3>Tu archivo no coincide con un voto encriptado .bvf!.</h3>";
+                echo "</i>";
+                echo "<h4>Asegúrate de haber escogido el archivo correcto, si no, intenta crear un voto nuevo. Si el problema persiste, por favor contáctanos a {$support_email}.</h4>";
+                break;
             case "STATE_TAMP":
                 echo "<h3>Modificacion del estado del usuario detectada (CSRF).</h3>";
                 echo "</i>";
