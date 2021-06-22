@@ -18,6 +18,17 @@
             <div class="form w3-col l6 m10 s10">
                     <h1>Elecciones TRICEL 2021</h1>
                     <h2>Urna Virtual Pública</h2>
+                    <h2>Votos emitidos:
+                        <?php
+                        $directory = "./urna_publica/";
+                        $filecount = 0;
+                        $files = glob($directory . "*");
+                        if ($files){
+                            $filecount = count($files);
+                        }
+                        echo $filecount;
+                        ?>
+                    </h2>
                     <div class="alarm">
                         <i class="fas fa-info-circle">
                             <h3>Acá puedes consultar todos los votos que han sido emitidos, con un delay de 15 minutos (por anonimidad).</h3>
