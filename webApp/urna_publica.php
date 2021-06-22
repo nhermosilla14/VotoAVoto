@@ -37,13 +37,14 @@
                     </div>
                     <div id="wrapper">
                     <?php
+                        $directory = "elecciones_2021/"
                         $fileList = glob('./urna_publica/*.bvf');
                         $domain = $_SERVER['SERVER_NAME']."/";
                         $protocol = "https://";
                         foreach($fileList as $filename){
                             //Use the is_file function to make sure that it is not a directory.
                             if(is_file($filename)){
-                                echo "<p><a href=$protocol$domain$filename>", basename($filename), "</a> </p>";
+                                echo "<p><a href=$protocol$domain$directory$filename>", basename($filename), "</a> </p>";
                             }
                         }
                     ?>
