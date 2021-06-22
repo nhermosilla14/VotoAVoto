@@ -6,7 +6,8 @@
       $jwt_username = array();
       $jwt_retval = -1;
       if (preg_match("/^[a-zA-Z0-9\.\-_]+$/", $id_token)) {
-        exec("python3 lib/python/signature_validation.py " . escapeshellarg($id_token), $jwt_username, $jwt_retval);
+        // horrible hardwiring as path cannot be modified for user used in prod (hosting constraints)
+        exec("/opt/alt/python38/bin/python3 lib/python/signature_validation.py " . escapeshellarg($id_token), $jwt_username, $jwt_retval);
       }
 
       return array($jwt_username[0], $jwt_retval);
@@ -46,7 +47,8 @@
       }
 
       // search for email and signature in db
-      $search_user = "SELECT email,token FROM signature WHERE token = '{$id_token}' OR email = '{$jwt_email}'";
+      $jwt_name = explode('@', $jwt_email)[0];
+      $search_user = "SELECT email FROM signature WHERE email LIKE '{$jwt_name}@%'";
       $res = $conn->query($search_user);
 
       // has voted either using the same signature as before
@@ -56,5 +58,18 @@
       }
 
       return False;
+    }
+
+    /*
+      Calculate entropy for a string
+    */
+    function entropy($string) {
+      $h=0;
+      $size = strlen($string);
+      foreach (count_chars($string, 1) as $v) {
+        $p = $v/$size;
+        $h -= $p*log($p)/log(2);
+      }
+      return $h;
     }
 ?>

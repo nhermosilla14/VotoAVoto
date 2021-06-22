@@ -10,5 +10,18 @@
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
 RewriteEngine On
+RewriteBase /
 RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# protect php.ini
+<Files ./php.ini>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# add etags
+FileETag MTime Size
+
+# disable dir browsing
+Options All -Indexes

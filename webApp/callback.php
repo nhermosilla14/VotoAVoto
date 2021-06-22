@@ -45,8 +45,9 @@
 
     // check if validation was successful
     if ($jwt_retval == 0) {
-      // then check against valid users
-      $check_user_query = "SELECT email FROM student WHERE email = '{$jwt_username}'";
+      // then check against valid users (all domains are taked into account for this logged user)
+      $jwt_name = explode("@", $jwt_username)[0];
+      $check_user_query = "SELECT email FROM student WHERE email LIKE '{$jwt_name}@%'";
 
       // user wasn't found in db, redirect to error page
       $res = $conn->query($check_user_query);
@@ -63,9 +64,11 @@
               document.cookie = 'voting_signature={$id_token}; max-age={$max_age}; Secure';
             </script>";
       redirect_to_page("urna.php");
+    } else {
+      redirect_to_error_page("SIGN_TAMP");
     }
 
-    $conn -> close();
-    redirect_to_error_page("SIGN_TAMP");
+  } else {
+    redirect_to_page("index.html");
   }
 ?>
