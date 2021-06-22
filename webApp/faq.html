@@ -2,21 +2,21 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>TRICEL UTFSM</title>
+        <title>TRICEL FEUTFSM CASA CENTRAL</title>
         <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/v4-shims.css">
-        <link rel='icon' href='img/favicon.ico' type='image/x-icon'/>
+        <link rel='icon' href='img/favicon_tricel.ico' type='image/x-icon'/>
     </head>
     <body class="gradient">
         <div class="w3-row">
             <div class="w3-col l3 m1 s1 w3-container">
             </div>
             <div class="form w3-col l6 m10 s10">
-                <h1>Elecciones TRICEL 2021</h1>
+                <h1>Elecciones Mesa Interina 2021</h1>
                 <h2>¿Cómo funciona?</h2>
                 <br>
                 <!-- -->
@@ -31,14 +31,14 @@
                     <i class="fas fa-question-circle">
                         <h3>Dice que "mi voto es secreto". ¿Realmente es así?</h3>
                     </i>
-                    <h4>Así es, top secret. Encriptamos tu voto usando dos cifrados diferentes, y la clave para descifrar todo sólo la tenemos nosotros. Al final del proceso la usamos para el conteo, luego de lo cual queda libre para que todos puedan usarla.</h4>
+                    <h4>Así es, top secret. Encriptamos tu voto usando dos cifrados diferentes, y la llave para descifrar todo sólo la tenemos nosotros. Al final del proceso la usamos para el conteo, luego de lo cual queda libre para que todos puedan usarla.</h4>
                     <br>
                 </div>
                 <div class="alarm">
                     <i class="fas fa-question-circle">
                         <h3>¿Quién puede revisar los resultados?</h3>
                     </i>
-                    <h4>Sólo el TRICEL, al igual que en una votación regular. La urna virtual es pública, pero los votos son ilegibles sin la llave privada. De todas formas puedes bajar todos los votos cuando quieras, para corroborar, auditar o recontar los votos luego por tu cuenta <a href="/votos_emitidos">aquí</a>. Por seguridad de los votantes, estos sólo se actualizan cada 15 minutos, de forma que no sea posible rastrear un voto por su hora de emisión mientras las mismas elecciones se llevan a cabo. </h4>
+                    <h4>Sólo el TRICEL, al igual que en una votación regular. La urna virtual es pública, pero los votos son ilegibles sin la llave privada. De todas formas puedes bajar todos los votos cuando quieras (una vez finalizada la votación), para corroborar, auditar o recontar los votos luego por tu cuenta <a href="/votos_emitidos">aquí</a>. Por seguridad de los votantes, estos sólo se actualizan cada 15 minutos, de forma que no sea posible rastrear un voto por su hora de emisión mientras las mismas elecciones se llevan a cabo. </h4>
                     <br>
                 </div>
                 <div class="alarm">
@@ -52,13 +52,15 @@
                     <i class="fas fa-question-circle">
                         <h3>¿De dónde salió esta plataforma?</h3>
                     </i>
-                    <h4>La idea de hacer una plataforma de votación fue originalmente de Paula Amigo, ex presidenta de nuestro CEE-ELO 2019. Ella hizo un bosquejo de la idea, y luego la elaboramos en el TRICEL y añadimos el cifrado asimétrico y todas las medidas de seguridad, el código para generar votos y subirlo, etc. Esto último entre Javier Torres (bases de datos y casi toda la pega del servidor, incluida la magia para la urna virtual), Nicolás Hermosilla (diseño del formato bvf, encriptación, py y js del generador del voto) y Valentina Barreda (sin cuya contribución esta web completa haría que tus ojos sangraran en asqueroso blanco y negro). El trabajo de actualizar la plataforma a su versión 2021 fue llevado a cabo por el TRICEL de este año, integrado por Pedro Espinoza, Nicolás Hermosilla, Kevin Pizarro y Javier Torres. Los cambios son pocos, pero básicamente comprenden actualizaciones en la base de datos y correcciones al código base. Las elecciones de FEUTFSM de este año usarán una plataforma basada en esta igualmente, y el trabajo en esa versión está siendo llevado mientras lees esto.</h4>
+                    <h4>
+                      Este es un proyecto en continuo desarrollo basado en la plataforma creada previamente por ELO en el 2020 para sus votaciones de CEE. Esta ha sido usada en numerosas otras votaciones como la pasada elección del Centro Estudiantil de ICOM, y se debe al esfuerzo y ayuda colaborativa de muchos estudiantes de nuestra universidad (así es, alguien como tú, leyendo esto ahora), interesados en contribuir su grano de arena a proyectos beneficiosos para su comunidad. Para más información, o si esta descripción te ha inspirado a participar, puedes encontrarnos en nuestro <a href="https://github.com/nhermosilla14/VotoAVoto">repositorio de GitHub</a>. Pronto pasaremos en el corto plazo a un framework más robusto en otro lenguaje, así que no te preocupes por el desorden actual :D.
+                    </h4>
                     <br>
                 </div>
                 <div>
                    <button class="btn" onclick="window.location.href='index.html';">Volver al Inicio</button>
                 </div>
-                <image src= "./img/cee_elo_logo.png">
+                <image src= "./img/logo_tricel_plataforma.png">
                 <br>
             </div>
             <div class="w3-col l3 m1 s1 w3-container">

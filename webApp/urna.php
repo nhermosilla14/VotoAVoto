@@ -64,7 +64,7 @@
                     <br>
                     <button class="btn" onclick="window.location.href='index.html';">Volver al Inicio</button>
                     <br>
-                    <image src= "./img/cee_elo_logo.png">
+                    <image src= "./img/logo_tricel_plataforma.png">
                 </form>
             </div>
         </div>

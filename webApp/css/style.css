@@ -7,11 +7,11 @@ body {
 
 .gradient {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0ccc92+0,0bc461+100 */
-    background: #0ccc92; /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover,  #0ccc92 0%, #0bc461 100%); /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover,  #0ccc92 0%,#0bc461 100%); /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center,  #0ccc92 0%,#0bc461 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0ccc92', endColorstr='#0bc461',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: #26bfc1; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #26bfc1 0%, #26bfc1 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #26bfc1 0%,#26bfc1 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #26bfc1 0%,#26bfc1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26bfc1', endColorstr='#26bfc1',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 .btn,input[type=button], input[type=submit], input[type=reset] {
-    background-color: #26C176;
+    background-color: #198081;
     border: none;
     border-radius: 5px;
     color: white;
