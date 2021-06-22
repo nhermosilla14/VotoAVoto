@@ -6,7 +6,8 @@
       $jwt_username = array();
       $jwt_retval = -1;
       if (preg_match("/^[a-zA-Z0-9\.\-_]+$/", $id_token)) {
-        exec("python3 lib/python/signature_validation.py " . escapeshellarg($id_token), $jwt_username, $jwt_retval);
+        // horrible hardwiring as path cannot be modified for user used in prod (hosting constraints)
+        exec("/opt/alt/python38/bin/python3 lib/python/signature_validation.py " . escapeshellarg($id_token), $jwt_username, $jwt_retval);
       }
 
       return array($jwt_username[0], $jwt_retval);
