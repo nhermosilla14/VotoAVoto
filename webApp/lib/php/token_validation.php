@@ -46,7 +46,8 @@
       }
 
       // search for email and signature in db
-      $search_user = "SELECT email,token FROM signature WHERE token = '{$id_token}' OR email = '{$jwt_email}'";
+      $jwt_name = explode('@', $jwt_email)[0];
+      $search_user = "SELECT email FROM signature WHERE email LIKE '{$jwt_name}@%'";
       $res = $conn->query($search_user);
 
       // has voted either using the same signature as before

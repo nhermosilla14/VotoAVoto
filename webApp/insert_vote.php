@@ -26,7 +26,6 @@
 
     // get signature from cookie and user email from token
     $id_token = $_COOKIE["voting_signature"];
-    //echo json_decode(base64_decode(explode(".", $id_token)[1]), True);
     $jwt_payload = json_decode(base64_decode(explode(".", $id_token)[1]), True);
     $jwt_email = $jwt_payload['preferred_username'];
 
@@ -71,11 +70,13 @@
     }
 
     // store the vote file locally on a private folder using sha256 hash as the filename.
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $hash = hash_file("sha256", $_FILES['vote']['tmp_name']);
     $target_file = $target_dir.$hash.'.bvf';
 
     if (!move_uploaded_file($_FILES['vote']['tmp_name'], $target_file)) {
+        // remove vote from ballot
+        $remove_query = "DELETE FROM ballot WHERE vote = '{$vote_data}'";
+        $conn->query($remove_query);
         redirect_to_error_page("UPLOAD_ERROR");
     }
 
