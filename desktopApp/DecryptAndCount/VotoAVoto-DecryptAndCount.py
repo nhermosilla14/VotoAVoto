@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import glob
@@ -64,6 +64,8 @@ class VotoApp(QtWidgets.QMainWindow):
         else:
             self.countdown -= 1
         self.ui.pushButtonNext.setText("Siguiente ("+str(self.countdown)+")")
+
+
     def updateCurVote(self):
         final_text = ""
         subvotes = self.voto.main.split(",")
@@ -80,13 +82,13 @@ class VotoApp(QtWidgets.QMainWindow):
 
 
     def decodeVote(self):
+        print(self.dir_files[0])
         try:
-            print(self.dir_files[0])
             self.voto = readFromFile(self.dir_files[0], self.pathToPEM)
             self.subvotes = self.voto.main.split(",")
         except:
-            for i in range(len(self.config.keys())):
-                self.subvotes.append(str(i+1)+"."+"0")
+            for subvote in self.config["subvotes"].keys():
+                self.subvotes.append(str(subvote)+"."+"00")
 
     def forceReadNextVote(self):
         self.readNextVote()
