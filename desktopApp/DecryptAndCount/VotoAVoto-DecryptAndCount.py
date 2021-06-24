@@ -18,10 +18,6 @@ class VotoApp(QtWidgets.QMainWindow):
     def __init__(self):
         super(VotoApp, self).__init__()
         self.ui = Ui_VotoApp()
-        self.confirmVoid = Ui_VotoApp_Confirm_Void()
-        self.confirmVoid.setupUi(self)
-        self.confirmVoid.pushButtonConfirm.clicked.connect(print)
-        self.confirmVoid.pushButtonReject.clicked.connect(print)
         self.ui.setupUi(self)
         self.ui.pushButtonPause.clicked.connect(self.toggleTimer)
         self.ui.pushButtonNext.clicked.connect(self.forceReadNextVote)
