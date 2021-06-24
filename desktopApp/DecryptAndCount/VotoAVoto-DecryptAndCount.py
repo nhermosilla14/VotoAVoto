@@ -12,7 +12,6 @@ from lib.libbvf import *
 from lib.voto import *
 from lib.extra import *
 from lib.VotoApp_decrypter_ui import *
-from lib.VotoApp_decrypter_confirm_void_ui import *
 import json
 
 class VotoApp(QtWidgets.QMainWindow):
