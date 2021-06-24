@@ -12,19 +12,25 @@ from lib.libbvf import *
 from lib.voto import *
 from lib.extra import *
 from lib.VotoApp_decrypter_ui import *
+from lib.VotoApp_decrypter_confirm_void_ui import *
 import json
 
 class VotoApp(QtWidgets.QMainWindow):
     def __init__(self):
         super(VotoApp, self).__init__()
         self.ui = Ui_VotoApp()
+        self.confirmVoid = Ui_VotoApp_Confirm_Void()
+        self.confirmVoid.setupUi(self)
+        self.confirmVoid.pushButtonConfirm.clicked.connect(print)
+        self.confirmVoid.pushButtonReject.clicked.connect(print)
         self.ui.setupUi(self)
         self.ui.pushButtonPause.clicked.connect(self.toggleTimer)
         self.ui.pushButtonNext.clicked.connect(self.forceReadNextVote)
+        self.ui.pushButtonVoid.clicked.connect(self.undoAndVoidVote)
         self.ui.progressBar.setValue(0)
         self.ui.topImg.setText(topImg)
         self.error_dialog = QtWidgets.QErrorMessage()
-        self.timerStatus = False
+        self.timerStatus = True
         self.ui.pushButtonPause.setText("Iniciar")
         self.timeout = 5
         self.countdown = self.timeout
@@ -39,6 +45,8 @@ class VotoApp(QtWidgets.QMainWindow):
         self.dir_files = glob.glob(self.pathToVotes + "/*.bvf")
         self.counts = dict()
         self.resetCounters()
+        self.updateCounters()
+        self.lastVoid = True
     
     def toggleTimer(self):
         if self.timerStatus:
@@ -87,6 +95,7 @@ class VotoApp(QtWidgets.QMainWindow):
             self.voto = readFromFile(self.dir_files[0], self.pathToPEM)
             self.subvotes = self.voto.main.split(",")
         except:
+            self.subvotes = []
             for subvote in self.config["subvotes"].keys():
                 self.subvotes.append(str(subvote)+"."+"00")
 
@@ -96,6 +105,7 @@ class VotoApp(QtWidgets.QMainWindow):
 
     def readNextVote(self):
         if len(self.dir_files) > 0:
+            self.lastVoid = False
             self.decodeVote()
             for subvote in self.subvotes:
                 key, opt = subvote.split(".")
@@ -108,6 +118,30 @@ class VotoApp(QtWidgets.QMainWindow):
             self.ui.bottomMessage.setText("No quedan más votos")
             if self.timerStatus:
                 self.toggleTimer()
+
+    def showDialog(self):
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Warning)
+        msg.setText("¿Confirmas la anulación del último voto? Esta acción es irreversible.")
+        msg.setWindowTitle("Confirmar anulación de voto")
+        msg.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        return msg.exec_()
+
+    def undoAndVoidVote(self):
+        if not self.lastVoid:
+            if self.showDialog() == QtWidgets.QMessageBox.Yes: 
+                for subvote in self.subvotes:
+                    key, opt = subvote.split(".")
+                    self.counts[key][opt] -= 1
+                    opt = 'N'
+                    self.counts[key][opt] += 1
+                    self.ui.textEditVoto.setText("======== VOTO ANULADO ========")
+                    self.lastVoid = True
+            self.countdown = self.timeout
+            if self.timerStatus:
+                self.toggleTimer()
+            self.updateCounters()
+            
 
     def resetCounters(self):
         self.total = len(self.dir_files)
