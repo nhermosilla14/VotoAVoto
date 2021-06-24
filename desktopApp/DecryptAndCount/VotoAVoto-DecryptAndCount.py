@@ -33,7 +33,7 @@ class VotoApp(QtWidgets.QMainWindow):
         self.ui.spinBoxTimeout.valueChanged.connect(self.setTimeout)
         self.timer=QTimer()
         self.timer.timeout.connect(self.updateNextLabel)
-        with open("config.json") as f:
+        with open("config.json", encoding='utf-8') as f:
             self.config = json.load(f)
         self.pathToPEM = self.config['pathToPEM']
         self.pathToVotes = self.config['pathToVotes']
