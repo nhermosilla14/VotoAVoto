@@ -1,0 +1,19 @@
+1.5.1   Modificado VotoApp-cli, para solicitar uno o dos campos faltantes en el
+        voto. Añadidos igualmente comentarios. Aporte hecho por FV.
+1.5.0   Se unificó el formato bvf en el fuente libbvf.py. De esa forma quedan
+        funcionales la GUI y la versión CLI con el mismo código, 100%
+        compatible con la versión web.
+1.4.0   Se modificó el formato bvf, para acomodar la forma en que trabaja
+        CryptoJS. Primera implementación CLI funcional del desencriptador.
+1.3.0   Se modificó el algoritmo de encriptación RSA, reemplazándolo por
+        PCKS1_v1.5, por compatibilidad con javascript.
+1.2.0   Versión funcional de la interfaz web, con un formato incompatible con 
+        las versiones anteriores.
+1.1.0   Versión inicial de la interfaz web. No funcional.
+1.0.0   Primera versión estable. Corregidos los binarios en todas las
+        versiones. Se distribuye todo el código python en un solo fuente.
+0.3.1   Añadidos binarios para todas las versiones.
+0.3.0   Versión mejorada de la GUI. Se cambia el campo de ingreso del voto por
+        checkBoxes.
+0.2.0   Versión inicial de la GUI.
+0.1.0   Primera versión. Funcionalidad básica CLI.

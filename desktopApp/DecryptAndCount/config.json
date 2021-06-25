@@ -1,0 +1,11 @@
+{
+    "pathToPEM":"private_unencrypted.pem",
+    "pathToVotes":"votos",
+    "subvotes": {
+        "01": {"Title":"Presidencia","01":"Apruebo","02":"Rechazo","N":"Nulo","00":"Blanco"},
+        "02": {"Title":"Secretaría General","01":"Apruebo","02":"Rechazo","N":"Nulo","00":"Blanco"},
+        "03": {"Title":"Secretaría Académica","01":"Bastián O.","02":"Alois B.","N":"Nulo","00":"Blanco"},
+        "04": {"Title":"Secretaría de Finanzas","01":"Apruebo","02":"Rechazo","N":"Nulo","00":"Blanco"},
+        "05": {"Title":"Secretaría de Bienestar","01":"Apruebo","02":"Rechazo","N":"Nulo","00":"Blanco"}            
+    }
+}

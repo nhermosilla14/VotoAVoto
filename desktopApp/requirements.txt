@@ -1,7 +1,0 @@
-requests
-requests-oauthlib
-python-twitter
-PyQt5
-pycryptodome
-mysql-connector-python
-csv

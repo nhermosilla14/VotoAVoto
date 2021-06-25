@@ -18,6 +18,17 @@
             <div class="form w3-col l6 m10 s10">
                     <h1>Elecciones TRICEL 2021</h1>
                     <h2>Urna Virtual Pública</h2>
+                    <h2>Votos emitidos:
+                        <?php
+                        $directory = "./urna_publica/";
+                        $filecount = 0;
+                        $files = glob($directory . "*");
+                        if ($files){
+                            $filecount = count($files);
+                        }
+                        echo $filecount;
+                        ?>
+                    </h2>
                     <div class="alarm">
                         <i class="fas fa-info-circle">
                             <h3>Acá puedes consultar todos los votos que han sido emitidos, con un delay de 15 minutos (por anonimidad).</h3>
@@ -26,13 +37,14 @@
                     </div>
                     <div id="wrapper">
                     <?php
+                        $directory = "elecciones_2021/"
                         $fileList = glob('./urna_publica/*.bvf');
                         $domain = $_SERVER['SERVER_NAME']."/";
                         $protocol = "https://";
                         foreach($fileList as $filename){
                             //Use the is_file function to make sure that it is not a directory.
                             if(is_file($filename)){
-                                echo "<p><a href=$protocol$domain$filename>", basename($filename), "</a> </p>";
+                                echo "<p><a href=$protocol$domain$directory$filename>", basename($filename), "</a> </p>";
                             }
                         }
                     ?>
