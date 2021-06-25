@@ -51,7 +51,7 @@
             if($f_size <= 1024){
                 $raw_vote_data = file_get_contents($_FILES['vote']['tmp_name']);
                 // needs entropy over a certain threshold to ensure only encrypted files are inputted (compressed files also apply here)
-                if (entropy($raw_vote_data) >= 6.2) {
+                if (entropy($raw_vote_data) >= 6.0) {
                     $vote_data = bin2hex($raw_vote_data);
                 } else {
                     redirect_to_error_page("FILE_ENT");
@@ -90,7 +90,12 @@
     $save_token_query = "INSERT INTO signature(email, token) VALUES ('{$jwt_email}', '{$id_token}')";
 
     if (!$conn->query($save_token_query)) {
-      redirect_to_error_page("DB_QUERY");
+        // remove vote from ballot
+        $remove_query = "DELETE FROM ballot WHERE vote = '{$vote_data}'";
+        $conn->query($remove_query);
+        // remove vote from fs and redirect to error page
+        unlink($target_file);
+        redirect_to_error_page("DB_QUERY");
     }
 
     // close db connection
